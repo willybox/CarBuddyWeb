@@ -1,0 +1,4 @@
+[submodule "CarBuddyAPI"]
+	path = CarBuddyAPI
+	url = D:/Projets/JavaEE/Eclipse/CarBuddyAPI
+	branch = master
