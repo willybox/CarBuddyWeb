@@ -137,6 +137,9 @@
       </Realm>
 
       <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
+      
+      <Context docBase="CarBuddyWeb" path="/CarBuddyWeb" reloadable="true" source="org.eclipse.jst.jee.server:CarBuddyWeb">
+      </Context>
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
