@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.carbuddy.bean.User;
-
-public class UserConnection extends HttpServlet {
+public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -20,29 +18,20 @@ public class UserConnection extends HttpServlet {
 		HttpServletRequest request,
 		HttpServletResponse response
 	) throws ServletException, IOException {
-		this
-			.getServletContext()
-			.getRequestDispatcher("/WEB-INF/Connection.jsp")
-			.forward(request, response);
-    }
-	
-	@Override
-	public void doPost(
-		HttpServletRequest request,
-		HttpServletResponse response
-	) throws ServletException, IOException {
-		
-		//TODO Retrieve User
-		//request.authenticate(arg0)
 		
 		HttpSession session = request.getSession();
-		//Dummy fake!
-		User dummy = new User();
-		session.setAttribute("user", dummy);
 		
-		// close session
-		// session.invalidate();
-		response.sendRedirect( WEBSITE_ABSOLUTE_PATH + "/index" );
+		if(session.getAttribute("user") != null) {
+			session.setAttribute("a", "slt abruti :)");
+			request.setAttribute("dummyHello", session.getAttribute("a"));
+			
+			this
+				.getServletContext()
+				.getRequestDispatcher("/WEB-INF/index.jsp")
+				.forward(request, response);
+		} else {
+	        response.sendRedirect( WEBSITE_ABSOLUTE_PATH + "/Deconnection" );
+		}
     }
 
 }

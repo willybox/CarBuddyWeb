@@ -7,6 +7,7 @@
 <title>Page d'accueil</title>
 </head>
 <body>
+	<a href="<c:url value="/Deconnection"/>">Log out</a>
 	<c:out value="${ dummyHello }"></c:out>
 </body>
 </html>

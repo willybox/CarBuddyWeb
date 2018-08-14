@@ -18,6 +18,36 @@
 	-->
 	
 	<servlet>
+		<servlet-name>Index</servlet-name>
+		<servlet-class>fr.carbuddyweb.servlet.Index</servlet-class>
+
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>WillyBox</param-value> 
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Index</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UserDeconnection</servlet-name>
+		<servlet-class>fr.carbuddyweb.servlet.UserDeconnection</servlet-class>
+
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>WillyBox</param-value> 
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserDeconnection</servlet-name>
+		<url-pattern>/Deconnection</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>UserConnection</servlet-name>
 		<servlet-class>fr.carbuddyweb.servlet.UserConnection</servlet-class>
 

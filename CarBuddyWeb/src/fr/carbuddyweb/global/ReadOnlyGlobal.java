@@ -2,6 +2,8 @@ package fr.carbuddyweb.global;
 
 public class ReadOnlyGlobal {
 
+	public static final String WEBSITE_ABSOLUTE_PATH = "http://localhost:8080/CarBuddyWeb";
+
 	public static final String USER_NAME = "username";
 	public static final String E_MAIL = "email";
 	public static final String PASSWORD = "password";
