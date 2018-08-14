@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.carbuddyweb.form.UserInscriptionForm;
 
-public class Inscription extends HttpServlet {
+public class UserConnection extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -19,7 +19,7 @@ public class Inscription extends HttpServlet {
 	) throws ServletException, IOException {
 		this
 			.getServletContext()
-			.getRequestDispatcher("/WEB-INF/Inscription.jsp")
+			.getRequestDispatcher("/WEB-INF/Connection.jsp")
 			.forward(request, response);
     }
 	
@@ -28,17 +28,14 @@ public class Inscription extends HttpServlet {
 		HttpServletRequest request,
 		HttpServletResponse response
 	) throws ServletException, IOException {
-		if(new UserInscriptionForm(request).newUser() != null) {
-			this
-				.getServletContext()
-				.getRequestDispatcher("/WEB-INF/ValidationInscription.jsp")
-				.forward(request, response);
-		} else {
-			this
-				.getServletContext()
-				.getRequestDispatcher("/WEB-INF/Inscription.jsp")
-				.forward(request, response);
-		}
+		
+		//TODO to do
+		//request.authenticate(arg0)
+		request.setAttribute("dummyHello", "slt abruti :)");
+		this
+			.getServletContext()
+			.getRequestDispatcher("/WEB-INF/index.jsp")
+			.forward(request, response);
     }
 
 }

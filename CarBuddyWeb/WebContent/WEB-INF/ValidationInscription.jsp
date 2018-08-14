@@ -9,5 +9,6 @@
 	</head>
 	<body>
 		  <p>Veuillez confirmer votre e-mail</p>
+		  <a href="Connection">Se connecter</a>
 	</body>
 </html>

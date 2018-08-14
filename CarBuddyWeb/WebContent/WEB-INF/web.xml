@@ -16,6 +16,21 @@
 	                 VIEWS
 	=========================================
 	-->
+	
+	<servlet>
+		<servlet-name>UserConnection</servlet-name>
+		<servlet-class>fr.carbuddyweb.servlet.UserConnection</servlet-class>
+
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>WillyBox</param-value> 
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserConnection</servlet-name>
+		<url-pattern>/Connection</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>DriverProfile</servlet-name>
