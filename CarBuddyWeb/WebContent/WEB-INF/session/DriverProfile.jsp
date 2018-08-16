@@ -11,7 +11,7 @@
 	<p>Prenom: ${driver.firstname}</p>
 	<p>Age: ${requestScope.age}</p>
 </body>
-<c:import url="footer.jsp">
+<c:import url="../footer.jsp">
   <c:param name="design" value="bleu"/>
 </c:import>
 </html>

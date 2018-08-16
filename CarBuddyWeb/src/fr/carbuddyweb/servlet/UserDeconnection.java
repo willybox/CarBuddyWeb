@@ -1,7 +1,5 @@
 package fr.carbuddyweb.servlet;
 
-import static fr.carbuddyweb.global.ReadOnlyGlobal.*;
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -20,7 +18,7 @@ public class UserDeconnection extends HttpServlet {
 		/** close session */
 		request.getSession().invalidate();
 		
-        response.sendRedirect( WEBSITE_ABSOLUTE_PATH + "/Connection" );
+        response.sendRedirect( request.getContextPath() + "/Connection" );
     }
 	
 }

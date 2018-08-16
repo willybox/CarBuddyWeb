@@ -1,7 +1,5 @@
 package fr.carbuddyweb.servlet;
 
-import static fr.carbuddyweb.global.ReadOnlyGlobal.WEBSITE_ABSOLUTE_PATH;
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -27,10 +25,10 @@ public class Index extends HttpServlet {
 			
 			this
 				.getServletContext()
-				.getRequestDispatcher("/WEB-INF/index.jsp")
+				.getRequestDispatcher("/WEB-INF/session/index.jsp")
 				.forward(request, response);
 		} else {
-	        response.sendRedirect( WEBSITE_ABSOLUTE_PATH + "/Deconnection" );
+	        response.sendRedirect( request.getContextPath() + "/Deconnection" );
 		}
     }
 

@@ -5,11 +5,11 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Page d'accueil</title>
-	<link type="text/css" rel="stylesheet" href="form.css" />
+	<link type="text/css" rel="stylesheet" href="<c:url value="/include/css/form.css"/>" />
 	</head>
 	<body>
 		<div id="menu">
-		  <form method="post" action="Connection">
+		  <form method="post" action="<c:url value="/Connection" />">
 	           <fieldset>
 	               <legend>Connexion</legend>
 	               <p>Vous pouvez vous connecter ou vous inscrire.</p>

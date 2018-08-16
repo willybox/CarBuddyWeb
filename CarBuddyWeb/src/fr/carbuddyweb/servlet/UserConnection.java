@@ -1,7 +1,5 @@
 package fr.carbuddyweb.servlet;
 
-import static fr.carbuddyweb.global.ReadOnlyGlobal.WEBSITE_ABSOLUTE_PATH;
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -42,7 +40,7 @@ public class UserConnection extends HttpServlet {
 		
 		// close session
 		// session.invalidate();
-		response.sendRedirect( WEBSITE_ABSOLUTE_PATH + "/index" );
+		response.sendRedirect( request.getContextPath() + "/session/index" );
     }
 
 }
