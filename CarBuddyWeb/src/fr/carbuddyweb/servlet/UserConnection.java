@@ -6,10 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import fr.carbuddyweb.form.UserInscriptionForm;
+import fr.carbuddy.bean.User;
 
-public class Inscription extends HttpServlet {
+public class UserConnection extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -19,7 +20,7 @@ public class Inscription extends HttpServlet {
 	) throws ServletException, IOException {
 		this
 			.getServletContext()
-			.getRequestDispatcher("/WEB-INF/Inscription.jsp")
+			.getRequestDispatcher("/WEB-INF/Connection.jsp")
 			.forward(request, response);
     }
 	
@@ -28,17 +29,18 @@ public class Inscription extends HttpServlet {
 		HttpServletRequest request,
 		HttpServletResponse response
 	) throws ServletException, IOException {
-		if(new UserInscriptionForm(request).newUser() != null) {
-			this
-				.getServletContext()
-				.getRequestDispatcher("/WEB-INF/ValidationInscription.jsp")
-				.forward(request, response);
-		} else {
-			this
-				.getServletContext()
-				.getRequestDispatcher("/WEB-INF/Inscription.jsp")
-				.forward(request, response);
-		}
+		
+		//TODO Retrieve User
+		//request.authenticate(arg0)
+		
+		HttpSession session = request.getSession();
+		//Dummy fake!
+		User dummy = new User();
+		session.setAttribute("user", dummy);
+		
+		// close session
+		// session.invalidate();
+		response.sendRedirect( request.getContextPath() + "/session/index" );
     }
 
 }

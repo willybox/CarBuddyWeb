@@ -72,6 +72,7 @@ public class UserInscriptionForm {
 
 		if(errorsValidation.isEmpty()) {
 			request.setAttribute("newUser", newUser);
+			return newUser;
 		} else {
 			for(ValidationStatus error : errorsValidation) {
 				String key = error.name().split("_")[0];

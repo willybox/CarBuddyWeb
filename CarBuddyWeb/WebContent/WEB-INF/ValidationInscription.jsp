@@ -5,9 +5,10 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Vous etes pre-inscrit</title>
-        <link type="text/css" rel="stylesheet" href="form.css" />
+        <link type="text/css" rel="stylesheet" href="<c:url value="/include/css/form.css"/>" />
 	</head>
 	<body>
 		  <p>Veuillez confirmer votre e-mail</p>
+		  <a href="<c:url value="/Connection"/>">Se connecter</a>
 	</body>
 </html>

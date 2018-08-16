@@ -13,13 +13,31 @@
 	
 	<!--
 	========================================= 
-	                 VIEWS
+	                 FILTERS
 	=========================================
 	-->
+	
+	<filter>
+	    <filter-name>ConnectionFilter</filter-name>
+	    <filter-class>fr.carbuddyweb.filter.ConnectionFilter</filter-class>
+	</filter>
 
+	<filter-mapping>
+	    <filter-name>ConnectionFilter</filter-name>
+	    <url-pattern>/session/*</url-pattern>
+	</filter-mapping>
+	
+	<!--
+	========================================= 
+	                 SERVLETS
+	=========================================
+	-->
+	
+	<!-- === PUBLIC === -->
+	
 	<servlet>
-		<servlet-name>DriverProfile</servlet-name>
-		<servlet-class>fr.carbuddyweb.servlet.DriverProfile</servlet-class>
+		<servlet-name>UserDeconnection</servlet-name>
+		<servlet-class>fr.carbuddyweb.servlet.UserDeconnection</servlet-class>
 
 		<init-param>
 			<param-name>auteur</param-name> 
@@ -28,11 +46,26 @@
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>DriverProfile</servlet-name>
-		<url-pattern>/Driver</url-pattern>
+		<servlet-name>UserDeconnection</servlet-name>
+		<url-pattern>/Deconnection</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UserConnection</servlet-name>
+		<servlet-class>fr.carbuddyweb.servlet.UserConnection</servlet-class>
+
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>WillyBox</param-value> 
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserConnection</servlet-name>
+		<url-pattern>/Connection</url-pattern>
 	</servlet-mapping>
 
-	<!-- INSCRIPTION -->
+	<!-- FORMS -->
 	
 	<servlet>
 		<servlet-name>Inscription</servlet-name>
@@ -48,5 +81,60 @@
 		<servlet-name>Inscription</servlet-name>
 		<url-pattern>/Inscription</url-pattern>
 	</servlet-mapping>
+	
+	<!-- === SESSION RESTRICTED === -->
+	
+	<!-- VIEWS -->
+	
+	<servlet>
+		<servlet-name>Index</servlet-name>
+		<servlet-class>fr.carbuddyweb.servlet.Index</servlet-class>
+
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>WillyBox</param-value> 
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Index</servlet-name>
+		<url-pattern>/session/index</url-pattern>
+	</servlet-mapping>
+	
+	<!-- DETAIL -->
+	
+	<servlet>
+		<servlet-name>DriverProfile</servlet-name>
+		<servlet-class>fr.carbuddyweb.servlet.DriverProfile</servlet-class>
+
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>WillyBox</param-value> 
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DriverProfile</servlet-name>
+		<url-pattern>/session/Driver</url-pattern>
+	</servlet-mapping>
+	
+	<!-- LISTING -->
+	
+	<servlet>
+		<servlet-name>ListUsers</servlet-name>
+		<servlet-class>fr.carbuddyweb.servlet.ListUsers</servlet-class>
+
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>WillyBox</param-value> 
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ListUsers</servlet-name>
+		<url-pattern>/session/Users</url-pattern>
+	</servlet-mapping>
+
+	<!-- FORMS -->
 	
 </web-app>

@@ -5,10 +5,10 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Inscription</title>
-        <link type="text/css" rel="stylesheet" href="form.css" />
+        <link type="text/css" rel="stylesheet" href="<c:url value="/include/css/form.css"/>" />
 	</head>
 	<body>
-		  <form method="post" action="Inscription">
+		  <form method="post" action="<c:url value="/Inscription"/>">
             <fieldset>
                 <legend>Inscription</legend>
                 <p>Vous pouvez vous inscrire via ce formulaire.</p>
