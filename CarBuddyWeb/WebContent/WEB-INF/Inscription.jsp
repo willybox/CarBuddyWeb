@@ -23,6 +23,12 @@
                 <label for="firstname">Prenom <span class="requis">*</span></label>
                 <input type="text" id="firstname" name="firstname" value="<c:out value="${param.firstname}"/>" size="20" maxlength="20" />
                 <br />
+                
+                <label for="choixNouveauClient">Sexe <span class="requis">*</span></label>
+                <input type="radio" id="sex" name="sex" value="male" checked /> Homme
+                <input type="radio" id="sex" name="sex" value="female" /> Femme
+                <br />
+
                 <c:if test="${not empty errorsMap['FIRSTNAME']}">
 	                <span class="erreur">${errorsMap['FIRSTNAME']}</span>
 	                <br />

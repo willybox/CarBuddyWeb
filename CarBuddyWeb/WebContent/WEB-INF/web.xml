@@ -11,6 +11,10 @@
 		</jsp-property-group>
 	</jsp-config>
 	
+	<listener>
+	    <listener-class>fr.carbuddyweb.dao.InitDAOFactory</listener-class>
+	</listener>
+	
 	<!--
 	========================================= 
 	                 FILTERS

@@ -30,10 +30,12 @@ public class DAOFactoryImpl implements DAOFactory {
         this.password = password;
     }
 
-    /*
-     * Méthode chargée de récupérer les informations de connexion à la base de
-     * données, charger le driver JDBC et retourner une instance de la Factory
-     */
+	/**
+	 * Will retrieve database connection information, load JDBC driver and
+	 * make factory instance
+	 * @return
+	 * @throws DAOConfigurationRuntimeException
+	 */
     public static DAOFactory getInstance() throws DAOConfigurationRuntimeException {
         Properties properties = new Properties();
         String url;
@@ -73,7 +75,7 @@ public class DAOFactoryImpl implements DAOFactory {
         	connection = DriverManager.getConnection(url, username, password);
         	System.out.println("Connection granted.");
 		} catch (SQLException e) {
-			e.printStackTrace();
+            throw new DAOConfigurationRuntimeException("Connection failed.");
 		}
 	}
 	
@@ -83,10 +85,9 @@ public class DAOFactoryImpl implements DAOFactory {
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
-				/** Quit */
-				return;
+	            throw new DAOConfigurationRuntimeException("Deconnection failed.");
 			}
+			connection = null;
 		}
     	System.out.println("Connection closed.");
 	}
@@ -98,10 +99,6 @@ public class DAOFactoryImpl implements DAOFactory {
 		return connection;
 	}
 
-    /*
-     * Méthodes de récupération de l'implémentation des différents DAO (un seul
-     * pour le moment)
-     */
 	@Override
     public UserDAO getUserDAO() {
         return new UserDAOImpl(this);

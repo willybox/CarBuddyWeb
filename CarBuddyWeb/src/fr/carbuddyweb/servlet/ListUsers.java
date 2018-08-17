@@ -7,12 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.joda.time.DateTime;
-
-import fr.carbuddy.bean.User;
-import fr.carbuddy.enumeration.string.StatusUser;
-import util.library.add.on.date.AddOnDate;
-
 public class ListUsers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

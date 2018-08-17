@@ -7,11 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.carbuddy.bean.User;
+import fr.carbuddy.dao.DAOFactory;
 import fr.carbuddyweb.form.UserInscriptionForm;
+import fr.carbuddyweb.global.ReadOnlyGlobal;
 
 public class Inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+	private DAOFactory daoFactory;
+
+	@Override
+    public void init() throws ServletException {
+        this.daoFactory = ((DAOFactory) getServletContext()
+        	.getAttribute(ReadOnlyGlobal.ATT_DAO_FACTORY));
+    }
+    
 	@Override
 	public void doGet(
 		HttpServletRequest request,
@@ -28,7 +38,10 @@ public class Inscription extends HttpServlet {
 		HttpServletRequest request,
 		HttpServletResponse response
 	) throws ServletException, IOException {
-		if(new UserInscriptionForm(request).newUser() != null) {
+		User newUser = new UserInscriptionForm(request, daoFactory).newUser();
+		/** Safely disconnect after all operation done */
+		daoFactory.disconnect();
+		if(newUser != null) {
 			this
 				.getServletContext()
 				.getRequestDispatcher("/WEB-INF/ValidationInscription.jsp")
