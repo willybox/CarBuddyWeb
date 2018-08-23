@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import fr.carbuddy.bean.User;
 import fr.carbuddy.dao.DAOFactory;
 import fr.carbuddy.global.ConstantValues;
 
+@WebServlet("/session/Users")
 public class ListUsers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DAOFactory daoFactory;

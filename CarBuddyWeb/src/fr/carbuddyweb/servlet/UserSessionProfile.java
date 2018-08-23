@@ -3,6 +3,7 @@ package fr.carbuddyweb.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import fr.carbuddy.bean.User;
 import fr.carbuddyweb.global.ReadOnlyGlobal;
 import util.library.add.on.date.AddOnDate;
 
+@WebServlet("/session/MyProfile")
 public class UserSessionProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

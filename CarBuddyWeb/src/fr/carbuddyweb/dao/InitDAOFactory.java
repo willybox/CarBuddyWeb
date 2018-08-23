@@ -3,11 +3,13 @@ package fr.carbuddyweb.dao;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 import fr.carbuddy.dao.DAOFactory;
 import fr.carbuddy.dao.mysql.DAOFactoryMySQLImpl;
 import fr.carbuddy.global.ConstantValues;
 
+@WebListener
 public class InitDAOFactory implements ServletContextListener {
     private DAOFactory daoFactory;
 

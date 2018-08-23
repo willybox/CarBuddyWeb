@@ -3,6 +3,9 @@ package fr.carbuddyweb.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +16,19 @@ import fr.carbuddy.global.ConstantValues;
 import fr.carbuddyweb.form.UserProfileEditForm;
 import fr.carbuddyweb.global.ReadOnlyGlobal;
 
+@WebServlet(
+	urlPatterns = "/session/EditProfile",
+	initParams = @WebInitParam(
+		name = "imageStoragePath",
+		value = "D:/Server/images/avatar/"
+	)
+)
+@MultipartConfig(
+	location = "D:/Server/images/avatar/",
+	maxFileSize = 2 * 1024 * 1024, // 2 Mo
+	maxRequestSize = 10 * 1024 * 1024, // 10 Mo
+	fileSizeThreshold = 1024 * 1024 // 1 Mo
+)
 public class UserSessionProfileEdit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DAOFactory daoFactory;
