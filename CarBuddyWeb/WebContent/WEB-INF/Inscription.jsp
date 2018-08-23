@@ -25,8 +25,8 @@
                 <br />
                 
                 <label for="choixNouveauClient">Sexe <span class="requis">*</span></label>
-                <input type="radio" id="sex" name="sex" value="male" checked /> Homme
-                <input type="radio" id="sex" name="sex" value="female" /> Femme
+                <input type="radio" id="gender" name="gender" value="male" checked /> Homme
+                <input type="radio" id="gender" name="gender" value="female" /> Femme
                 <br />
 
                 <c:if test="${not empty errorsMap['FIRSTNAME']}">

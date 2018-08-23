@@ -1,23 +1,22 @@
 package fr.carbuddyweb.form;
 
-import static fr.carbuddyweb.global.ReadOnlyGlobal.BIRTHDAY;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.CITY;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.CONFIRM_PW;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.COUNTRY;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.E_MAIL;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.FIRSTNAME;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.NAME;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.PASSWORD;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.PHONE;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.POSTAL;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.SEX;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.STREET;
-import static fr.carbuddyweb.global.ReadOnlyGlobal.USER_NAME;
+import static fr.carbuddy.global.ConstantValues.BIRTHDAY;
+import static fr.carbuddy.global.ConstantValues.CITY;
+import static fr.carbuddy.global.ConstantValues.CONFIRM_PW;
+import static fr.carbuddy.global.ConstantValues.COUNTRY;
+import static fr.carbuddy.global.ConstantValues.E_MAIL;
+import static fr.carbuddy.global.ConstantValues.FIRSTNAME;
+import static fr.carbuddy.global.ConstantValues.NAME;
+import static fr.carbuddy.global.ConstantValues.PASSWORD;
+import static fr.carbuddy.global.ConstantValues.PHONE;
+import static fr.carbuddy.global.ConstantValues.POSTAL;
+import static fr.carbuddy.global.ConstantValues.*;
+import static fr.carbuddy.global.ConstantValues.STREET;
+import static fr.carbuddy.global.ConstantValues.USER_NAME;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +27,7 @@ import fr.carbuddy.dao.DAOFactory;
 import fr.carbuddy.enumeration.ValidationStatus;
 import fr.carbuddy.exception.DAORuntimeException;
 import fr.carbuddy.service.CreationService;
+import fr.carbuddyweb.util.ParamUtil;
 import util.library.add.on.string.AddOnString;
 
 public class UserInscriptionForm {
@@ -41,7 +41,6 @@ public class UserInscriptionForm {
 	}
 
 	public User newUser() {
-		HashMap<String, String> errorsMap = new HashMap<>();
 		CreationService creationService = new CreationService(daoFactory);
 		
 		String birthday = request.getParameter(BIRTHDAY);
@@ -70,11 +69,12 @@ public class UserInscriptionForm {
 			);
 		}
 		Set<ValidationStatus> errorsValidation = creationService.getErrorsValidation();
+		
 		User newUser = creationService.createUser(
 			request.getParameter(USER_NAME),
 			request.getParameter(PASSWORD),
 			request.getParameter(CONFIRM_PW),
-			request.getParameter(SEX),
+			request.getParameter(GENDER),
 			request.getParameter(E_MAIL),
 			request.getParameter(NAME),
 			request.getParameter(FIRSTNAME),
@@ -89,18 +89,7 @@ public class UserInscriptionForm {
 			
 			return newUser;
 		} else {
-			for(ValidationStatus error : errorsValidation) {
-				String key = error.name().split("_")[0];
-				String oldValue = errorsMap.get(key);
-				String newValue = error.toString();
-				
-				if(oldValue == null) {
-					errorsMap.put(key, newValue);
-				} else {
-					errorsMap.put(key, oldValue + ";" + newValue);
-				}
-			}
-			request.setAttribute("errorsMap", errorsMap);
+			ParamUtil.setErrorMapParameter(errorsValidation, request);
 		}
 		
 		return null;

@@ -107,9 +107,10 @@
 	
 	<!-- DETAIL -->
 	
+	<!-- Any user -->
 	<servlet>
-		<servlet-name>DriverProfile</servlet-name>
-		<servlet-class>fr.carbuddyweb.servlet.DriverProfile</servlet-class>
+		<servlet-name>UserProfile</servlet-name>
+		<servlet-class>fr.carbuddyweb.servlet.UserProfile</servlet-class>
 
 		<init-param>
 			<param-name>auteur</param-name> 
@@ -118,8 +119,52 @@
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>DriverProfile</servlet-name>
-		<url-pattern>/session/Driver</url-pattern>
+		<servlet-name>UserProfile</servlet-name>
+		<url-pattern>/session/User/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Session user -->
+	<servlet>
+		<servlet-name>UserSessionProfile</servlet-name>
+		<servlet-class>fr.carbuddyweb.servlet.UserSessionProfile</servlet-class>
+
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>WillyBox</param-value> 
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserSessionProfile</servlet-name>
+		<url-pattern>/session/MyProfile</url-pattern>
+	</servlet-mapping>
+	
+	<!-- FORMS -->
+	
+	<!-- Session user edit -->
+	<servlet>
+		<servlet-name>UserSessionProfileEdit</servlet-name>
+		<servlet-class>fr.carbuddyweb.servlet.UserSessionProfileEdit</servlet-class>
+
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>WillyBox</param-value> 
+		</init-param>
+		<init-param>
+			<param-name>imageStoragePath</param-name> 
+			<param-value>D:/Server/images/avatar/</param-value> 
+		</init-param>
+        <multipart-config>
+            <location>D:/Server/images/avatar/</location> <!-- Must exists -->
+            <max-file-size>2097152</max-file-size> <!-- 2 Mo -->
+            <max-request-size>10485760</max-request-size> <!-- 5 x 2Mo -->
+            <file-size-threshold>1048576</file-size-threshold> <!-- 1 Mo -->
+        </multipart-config>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserSessionProfileEdit</servlet-name>
+		<url-pattern>/session/EditProfile</url-pattern>
 	</servlet-mapping>
 	
 	<!-- LISTING -->

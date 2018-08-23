@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Profil de ${driver.firstname} ${driver.name}</title>
+<title>Profil de ${requestScope.user.firstname} ${requestScope.user.name}</title>
 </head>
 <body>
-	<p>Nom: ${driver.name}</p>
-	<p>Prenom: ${driver.firstname}</p>
+	<p>Nom: ${requestScope.user.name}</p>
+	<p>Prenom: ${requestScope.user.firstname}</p>
 	<p>Age: ${requestScope.age}</p>
 </body>
 <c:import url="../footer.jsp">

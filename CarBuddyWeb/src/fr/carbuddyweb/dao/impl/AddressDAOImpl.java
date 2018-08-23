@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import fr.carbuddy.bean.Address;
 import fr.carbuddy.dao.AbstractAddressDAO;
@@ -164,13 +165,27 @@ public class AddressDAOImpl extends AbstractAddressDAO {
 	}
 
 	@Override
-	public Address getAddress(String country, String city, String postal, String street) throws DAORuntimeException {
-		Address dummyAddress = new Address();
-		dummyAddress.setCity(city);
-		dummyAddress.setCountry(country);
-		dummyAddress.setPostal(postal);
-		dummyAddress.setStreet(street);
-		return getAddress(dummyAddress);
+	public List<String> listCity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> listCountry() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> listPostal() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> listStreet() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

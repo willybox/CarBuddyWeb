@@ -5,8 +5,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import fr.carbuddy.dao.DAOFactory;
+import fr.carbuddy.global.ConstantValues;
 import fr.carbuddyweb.dao.impl.DAOFactoryImpl;
-import fr.carbuddyweb.global.ReadOnlyGlobal;
 
 public class InitDAOFactory implements ServletContextListener {
     private DAOFactory daoFactory;
@@ -18,7 +18,7 @@ public class InitDAOFactory implements ServletContextListener {
         /** Instantiation of DAOFactory */
         this.daoFactory = DAOFactoryImpl.getInstance();
         /** Saving as attribute in application scope */
-        servletContext.setAttribute(ReadOnlyGlobal.ATT_DAO_FACTORY, this.daoFactory);
+        servletContext.setAttribute(ConstantValues.ATT_DAO_FACTORY, this.daoFactory);
     }
 
     @Override
