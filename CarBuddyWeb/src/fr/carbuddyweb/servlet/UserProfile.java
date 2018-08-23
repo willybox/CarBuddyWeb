@@ -1,7 +1,6 @@
 package fr.carbuddyweb.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,8 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import fr.carbuddy.bean.User;
 import fr.carbuddy.dao.DAOFactory;
 import fr.carbuddy.global.ConstantValues;
+import util.library.add.on.date.AddOnDate;
 
-public class ListUsers extends HttpServlet {
+public class UserProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DAOFactory daoFactory;
 
@@ -26,17 +26,17 @@ public class ListUsers extends HttpServlet {
 	public void doGet(
 		HttpServletRequest request,
 		HttpServletResponse response
-	) throws ServletException, IOException {
+	) throws ServletException, IOException{
+		/** Get id on url */
+		Long id = 1L;
+		User u = daoFactory.getUserDAO().findById(id);
 		
-		List<User> users = daoFactory.getUserDAO().listUser(null, true);
-		
-		request.setAttribute("users", users);
-
-		/** Safely disconnect after all operation done */
-		daoFactory.disconnect();
+    	request.setAttribute( "user", u );
+    	request.setAttribute( "age", AddOnDate.getAge(u.getBirthday()) );
+    	
 		this
 			.getServletContext()
-			.getRequestDispatcher("/WEB-INF/session/ListUsers.jsp")
+			.getRequestDispatcher("/WEB-INF/session/UserProfile.jsp")
 			.forward(request, response);
     }
 

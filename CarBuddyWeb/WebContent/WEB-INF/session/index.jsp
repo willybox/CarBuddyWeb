@@ -9,6 +9,7 @@
 <body>
 	<a href="<c:url value="/Deconnection"/>">Log out</a>
 	<c:out value="${ dummyHello }"></c:out>
-	<a href="<c:url value="/Users"/>">Voir utilisateurs</a>
+	<a href="<c:url value="/session/Users"/>">Voir utilisateurs</a>
+	<a href="<c:url value="/session/MyProfile"/>">Voir mon profil</a>
 </body>
 </html>

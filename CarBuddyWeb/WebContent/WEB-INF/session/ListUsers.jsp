@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Profil de ${driver.firstname} ${driver.name}</title>
+<title>Profil de ${users[1].firstname} ${users[1].name}</title>
 </head>
 <body>
-	<p>Nom: ${driver.name}</p>
-	<p>Prenom: ${driver.firstname}</p>
-	<p>Age: ${requestScope.age}</p>
+	<p>Nom: ${users[1].name}</p>
+	<p>Prenom: ${users[1].firstname}</p>
 </body>
 <c:import url="../footer.jsp">
   <c:param name="design" value="bleu"/>

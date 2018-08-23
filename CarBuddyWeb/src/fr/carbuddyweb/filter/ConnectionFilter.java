@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.carbuddyweb.global.ReadOnlyGlobal;
+
 public class ConnectionFilter implements Filter {
 
 	@Override
@@ -42,7 +44,7 @@ public class ConnectionFilter implements Filter {
         
 		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("user") != null) {
+		if(session.getAttribute(ReadOnlyGlobal.USER_SESSION) != null) {
 			session.setAttribute("a", "slt abruti :)");
 			request.setAttribute("dummyHello", session.getAttribute("a"));
 

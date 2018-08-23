@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import fr.carbuddy.bean.User;
 import fr.carbuddy.dao.DAOFactory;
 import fr.carbuddy.global.ConstantValues;
-import fr.carbuddyweb.form.UserInscriptionForm;
+import fr.carbuddyweb.form.UserProfileEditForm;
+import fr.carbuddyweb.global.ReadOnlyGlobal;
 
-public class Inscription extends HttpServlet {
+public class UserSessionProfileEdit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DAOFactory daoFactory;
 
@@ -21,15 +22,15 @@ public class Inscription extends HttpServlet {
         this.daoFactory = ((DAOFactory) getServletContext()
         	.getAttribute(ConstantValues.ATT_DAO_FACTORY));
     }
-    
+
 	@Override
 	public void doGet(
 		HttpServletRequest request,
 		HttpServletResponse response
-	) throws ServletException, IOException {
+	) throws ServletException, IOException{
 		this
 			.getServletContext()
-			.getRequestDispatcher("/WEB-INF/Inscription.jsp")
+			.getRequestDispatcher("/WEB-INF/session/EditProfile.jsp")
 			.forward(request, response);
     }
 	
@@ -37,21 +38,24 @@ public class Inscription extends HttpServlet {
 	public void doPost(
 		HttpServletRequest request,
 		HttpServletResponse response
-	) throws ServletException, IOException {
-		User newUser = new UserInscriptionForm(request, daoFactory).newUser();
-		/** Safely disconnect after all operation done */
-		daoFactory.disconnect();
-		if(newUser != null) {
-			this
-				.getServletContext()
-				.getRequestDispatcher("/WEB-INF/ValidationInscription.jsp")
-				.forward(request, response);
-		} else {
-			this
-				.getServletContext()
-				.getRequestDispatcher("/WEB-INF/Inscription.jsp")
-				.forward(request, response);
+	) throws ServletException, IOException{
+		User connectedUser = (User) request
+			.getSession()
+			.getAttribute(ReadOnlyGlobal.USER_SESSION);
+
+		User user = new UserProfileEditForm(request, daoFactory)
+			.updateUser(this
+				.getServletConfig()
+				.getInitParameter("imageStoragePath"));
+		/** If user profile changed */
+		if(!connectedUser.equals(user)) {
+			request.getSession().setAttribute(ReadOnlyGlobal.USER_SESSION, user);
 		}
-    }
+		
+		this
+			.getServletContext()
+			.getRequestDispatcher("/WEB-INF/session/EditProfile.jsp")
+			.forward(request, response);
+	}
 
 }

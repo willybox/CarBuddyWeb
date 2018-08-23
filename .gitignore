@@ -72,7 +72,6 @@ jaxws/jaxws-endpoint/src/main/webapp/WEB-INF/wsdl/
 *.class
  
 # Package Files #
-*.jar
 *.war
 *.ear
 *.db
