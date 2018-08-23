@@ -31,9 +31,6 @@ public class ListUsers extends HttpServlet {
 		List<User> users = daoFactory.getUserDAO().listUser(null, true);
 		
 		request.setAttribute("users", users);
-
-		/** Safely disconnect after all operation done */
-		daoFactory.disconnect();
 		this
 			.getServletContext()
 			.getRequestDispatcher("/WEB-INF/session/ListUsers.jsp")

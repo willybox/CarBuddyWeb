@@ -39,8 +39,6 @@ public class Inscription extends HttpServlet {
 		HttpServletResponse response
 	) throws ServletException, IOException {
 		User newUser = new UserInscriptionForm(request, daoFactory).newUser();
-		/** Safely disconnect after all operation done */
-		daoFactory.disconnect();
 		if(newUser != null) {
 			this
 				.getServletContext()

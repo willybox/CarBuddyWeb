@@ -5,8 +5,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import fr.carbuddy.dao.DAOFactory;
+import fr.carbuddy.dao.mysql.DAOFactoryMySQLImpl;
 import fr.carbuddy.global.ConstantValues;
-import fr.carbuddyweb.dao.impl.DAOFactoryImpl;
 
 public class InitDAOFactory implements ServletContextListener {
     private DAOFactory daoFactory;
@@ -16,7 +16,7 @@ public class InitDAOFactory implements ServletContextListener {
         /** Getting ServletContext at application loading */
         ServletContext servletContext = event.getServletContext();
         /** Instantiation of DAOFactory */
-        this.daoFactory = DAOFactoryImpl.getInstance();
+        this.daoFactory = DAOFactoryMySQLImpl.getInstance();
         /** Saving as attribute in application scope */
         servletContext.setAttribute(ConstantValues.ATT_DAO_FACTORY, this.daoFactory);
     }

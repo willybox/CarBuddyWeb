@@ -43,8 +43,7 @@ public class UserConnection extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		User user = new UserConnectionForm(request, daoFactory).getUser();
-		/** Safely disconnect factory after all operation done */
-		daoFactory.disconnect();
+		
 		if(user == null) {
 			this
 				.getServletContext()
