@@ -53,23 +53,27 @@ public class UserProfileEditForm {
 			if(!AddOnString.isNullOrEmpty(avatarName)) {
 				ValidationStatus avatarStatus = new UserService(newValues)
 					.checkAvatar(part.getInputStream());
+				
+				/** If the checking failed */
 				if(avatarStatus != ValidationStatus.OK) {
 					errorsValidation.add(avatarStatus);
-				}
-
-				StringBuilder pathDest = new StringBuilder()
-					.append(storagePath)
-					.append(oldValues.getId()).append(" - ").append(avatarName);
-
-				try {
-					String absPathDest = pathDest.toString();
-					AddOnFile.copyFile(
-						part.getInputStream(),
-						absPathDest
-					);
-					newValues.setAvatar(absPathDest);
-				} catch (Exception e) {
-					errorsValidation.add(AVATAR_WRITE_FAILURE);
+					
+				/** If the checking is ok */
+				} else {
+					StringBuilder pathDest = new StringBuilder()
+						.append(storagePath)
+						.append(oldValues.getId()).append(" - ").append(avatarName);
+	
+					try {
+						String absPathDest = pathDest.toString();
+						AddOnFile.copyFile(
+							part.getInputStream(),
+							absPathDest
+						);
+						newValues.setAvatar(absPathDest);
+					} catch (Exception e) {
+						errorsValidation.add(AVATAR_WRITE_FAILURE);
+					}
 				}
 			} /** Else, user did not chose new avatar, let it null */
 		} catch (IllegalStateException e) {
