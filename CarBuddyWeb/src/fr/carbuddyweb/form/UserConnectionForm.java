@@ -1,7 +1,7 @@
 package fr.carbuddyweb.form;
 
 import static fr.carbuddy.global.ConstantValues.PASSWORD;
-import static fr.carbuddy.global.ConstantValues.USER_NAME;
+import static fr.carbuddy.global.ConstantValues.USERNAME;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +29,7 @@ public class UserConnectionForm {
 		Set<ValidationStatus> errorMap = new HashSet<>();
 		User user = daoFactory
 			.getUserDAO()
-			.findByUsername(request.getParameter(USER_NAME));
+			.findByUsername(request.getParameter(USERNAME));
 		
 		if(user == null) {
 			errorMap.add(ValidationStatus.INVALID_USERNAME_OR_PASSWORD);
